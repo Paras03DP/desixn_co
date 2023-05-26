@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../model/product');
 const mongoose = require('mongoose');
+const Product = require('../model/product')
 
 router.get('/', (req,res,next)=>{
     Product.find()
@@ -14,14 +14,15 @@ router.get('/', (req,res,next)=>{
 })
 
 router.get('/:id', (req,res,next)=>{
-    console.log(req.params.id);
+    const _id = req.params.id;
 
     Product.findById(_id)
     .exec()
     .then(result=>{
+        console.log(result);
         res.status(200).json({
             product:result
-        });
+        })
     })
 })
 
@@ -36,20 +37,20 @@ router.post('/', (req,res,next)=>{
     sp:req.body.sp,
     discountPercent:req.body.discountPercent,
     imagePath:req.body.imagePath
-    })
+    });
 
     product.save()
     .then(result=>{
         console.log(result);
         res.status(200).json({
             new_product:result
-        });
+        })
     })
 
     .catch(err=>{
         console.log(err);
         res.status(500).json({
-            error:err
+            Error:err
         })
     })
 })
