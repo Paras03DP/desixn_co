@@ -3,6 +3,7 @@ const app = express();
 const studentRoute = require('./api/routes/student')
 const facultyRoute = require('./api/routes/faculty')
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 mongoose.connect('mongodb+srv://root:root@loginsignupapi.dwq4dpe.mongodb.net/')
 
@@ -16,14 +17,11 @@ mongoose.connection.on('connected', connected =>{
 });
 
 
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
 app.use('/student', studentRoute)
 app.use('/faculty', facultyRoute)
-
-// app.use((req,res,next) =>{
-//     res.status(200).json({
-//         message:'app is running'
-//     })
-// })
 
 app.use((req,res,next) =>{
     res.status(404).json({

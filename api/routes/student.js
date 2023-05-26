@@ -8,9 +8,7 @@ router.get('/', (req,res,next)=>{
 })
 
 router.post('/', (req,res,next)=>{
-    res.status(200).json({
-        msg: 'this is student post request'
-    })
+    console.log(req.body);
 })
 
 module.exports = router;
