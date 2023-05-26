@@ -12,6 +12,22 @@ router.get('/', (req,res,next)=>{
     })
     .catch(err=>{
         console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    });
+})
+
+router.get('/:id', (req,res,next)=>{
+    console.log(req.params.id);
+    Student.findById(req.params.id)
+    .then(result=>{
+        res.status(200).json({
+            student:result
+        });
+    })
+    .catch(err=>{
+        console.log(err);
         res.statusMessage(500).json({
             error:err
         })
