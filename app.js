@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
-const studentRoute = require('./api/routes/student')
-const facultyRoute = require('./api/routes/faculty')
+const productRoute = require('./api/routes/product')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -20,8 +19,7 @@ mongoose.connection.on('connected', connected =>{
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.use('/student', studentRoute)
-app.use('/faculty', facultyRoute)
+app.use('/product', productRoute)
 
 app.use((req,res,next) =>{
     res.status(404).json({
