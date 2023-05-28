@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 const productRoute = require('./api/routes/product')
+const userRoute = require('./api/routes/signup')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.use('/product', productRoute);
+app.use('/user', userRoute);
 
 app.use((req,res,next) =>{
     res.status(404).json({
